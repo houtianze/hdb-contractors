@@ -1,0 +1,28 @@
+{
+  "name": "hdb-contractors",
+  "version": "1.0.0",
+  "description": "A simple script to crawl CaseTrust contractors from the HDB website listing",
+  "main": "index.js",
+  "bin": "./index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/houtianze/hdb-contractors"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"No test written\""
+  },
+  "keywords": [],
+  "author": "ibic",
+  "license": "ISC",
+  "devDependencies": {
+    "playwright": "^1.8.0"
+  },
+  "dependencies": {
+    "commander": "^7.0.0",
+    "got": "^11.8.1",
+    "js-beautify": "^1.13.4",
+    "mkdirp": "^1.0.4",
+    "ora": "^5.3.0"
+  }
+}
