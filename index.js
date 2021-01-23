@@ -64,7 +64,7 @@ console.log(`Program options: ${JSON.stringify(options)}`);
   const page = await browser.newPage();
   await page.goto(ListingPage);
   spinner.stop();
-  let outHtml = '<table>\n<tbody>\n';
+  let outHtml = `<!-- Retrieved on ${new Date()} -->\n<table>\n<tbody>\n`;
   const lastPage = parseInt(options.lastPage);
   for (let pageNo = 1; pageNo <= lastPage; pageNo++)  {
     spinner = ora(`retrieving CaseTrust contractors page ${pageNo}/${lastPage}`);
