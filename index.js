@@ -69,20 +69,26 @@ console.log(`Program options: ${JSON.stringify(options)}`);
   for (let pageNo = 1; pageNo <= lastPage; pageNo++)  {
     spinner = ora(`retrieving CaseTrust contractors page ${pageNo}/${lastPage}`);
     spinner.start();
-    await page.click(`text="${pageNo}"`);
-    await page.selectOption('select[id="filterBy"]', 'caseTrust');
-    let form = await page.innerHTML('#Record>tbody');
-    // somebody did some shitty front-end coding
-    form = form.replace(/<tr>\s*<\/tr>/gm, '');
-    form = form.replace(/^\s*[\r\n]/gm, '');
-    // if (pageNo !== 1) {
-    //   form = form.replace(/<tr>(.|\r|\n)*?Email\s+Address\s*<\/th>(\s|\r|\n)*<\/tr>/gm, '');
-    // }
-    // outHtml += form;
-    if (pageNo === lastPage) {
-      outHtml += form;
+    try {
+      await page.click(`text="${pageNo}"`);
+      await page.selectOption('select[id="filterBy"]', 'caseTrust');
+      let form = await page.innerHTML('#Record>tbody');
+      // somebody did some shitty front-end coding
+      form = form.replace(/<tr>\s*<\/tr>/gm, '');
+      form = form.replace(/^\s*[\r\n]/gm, '');
+      // if (pageNo !== 1) {
+      //   form = form.replace(/<tr>(.|\r|\n)*?Email\s+Address\s*<\/th>(\s|\r|\n)*<\/tr>/gm, '');
+      // }
+      // outHtml += form;
+      if (pageNo === lastPage) {
+        outHtml += form;
+      }
+      await sleep(Math.random() * 1000);
+    } catch (err) {
+      // retry the current page
+      console.error(`Exception: ${err}`);
+      pageNo -= 1;
     }
-    await sleep(Math.random() * 1000);
     spinner.stop();
   }
   outHtml += '\n</tbody>\n</table>';
