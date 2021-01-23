@@ -80,7 +80,7 @@ console.log(`Program options: ${JSON.stringify(options)}`);
     // }
     // outHtml += form;
     if (pageNo === lastPage) {
-      outHtml = form;
+      outHtml += form;
     }
     await sleep(Math.random() * 1000);
     spinner.stop();
