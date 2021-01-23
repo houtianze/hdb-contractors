@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 //@ts-check
 
 const stream = require('stream');
